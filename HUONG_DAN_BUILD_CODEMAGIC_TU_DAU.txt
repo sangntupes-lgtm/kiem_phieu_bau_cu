@@ -1,0 +1,39 @@
+HƯỚNG DẪN LÀM LẠI TỪ ĐẦU
+===========================
+
+1. GIẢI NÉN
+- Giải nén KIEM_DEM_PHIEU_BAU_MOBILE_PRO_FULL_CODEMAGIC.zip.
+- Không tải nguyên file ZIP lên GitHub.
+
+2. XÓA NỘI DUNG CŨ TRONG REPOSITORY
+- Mở github.com/sangntupes-lgtm/kiem_phieu_bau
+- Xóa các tệp cũ hoặc tạo repository mới sạch.
+
+3. UPLOAD
+- Add file -> Upload files.
+- Kéo toàn bộ nội dung bên trong thư mục giải nén lên.
+- Bắt buộc GitHub phải nhìn thấy:
+  android/
+  lib/
+  assets/
+  pubspec.yaml
+  codemagic.yaml
+- Bấm Commit changes.
+
+4. CODEMAGIC
+- Mở Codemagic -> Applications.
+- Chọn ứng dụng kiem_phieu.
+- Chọn branch main.
+- Bấm Check for configuration files.
+- Codemagic phải nhận workflow:
+  KIEM DEM PHIEU BAU - APK RELEASE
+
+5. BUILD
+- Bấm Start new build.
+- Chọn branch main và workflow trên.
+- Chờ dấu tích xanh.
+
+6. TẢI APK
+- Mở lần build thành công.
+- Kéo xuống Artifacts.
+- Tải app-release.apk.

@@ -1,0 +1,44 @@
+workflows:
+  android-apk:
+    name: KIEM DEM PHIEU BAU - APK RELEASE
+    max_build_duration: 60
+    instance_type: linux_x2
+
+    environment:
+      flutter: stable
+      java: 17
+
+    cache:
+      cache_paths:
+        - $HOME/.pub-cache
+        - $HOME/.gradle/caches
+        - $HOME/.gradle/wrapper
+
+    scripts:
+      - name: Kiem tra du an
+        script: |
+          set -e
+          test -f pubspec.yaml
+          test -f lib/main.dart
+          test -f android/app/build.gradle.kts
+
+      - name: Tai thu vien
+        script: flutter pub get
+
+      - name: Kiem tra ma nguon
+        script: flutter analyze --no-fatal-warnings --no-fatal-infos
+
+      - name: Build APK Release
+        script: flutter build apk --release
+
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+      - build/app/outputs/flutter-apk/*.apk
+
+    publishing:
+      email:
+        recipients:
+          - sangntupes@gmail.com
+        notify:
+          success: true
+          failure: true
