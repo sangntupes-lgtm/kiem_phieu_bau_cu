@@ -1,44 +1,30 @@
 workflows:
   android-apk:
-    name: KIEM DEM PHIEU BAU - APK RELEASE
+    name: Android APK
     max_build_duration: 60
-    instance_type: linux
-
     environment:
       flutter: stable
-      java: 17
-
-    cache:
-      cache_paths:
-        - $HOME/.pub-cache
-        - $HOME/.gradle/caches
-        - $HOME/.gradle/wrapper
-
+      vars:
+        API_URL: "https://YOUR-SERVER.onrender.com"
     scripts:
-      - name: Kiem tra du an
-        script: |
-          set -e
-          test -f pubspec.yaml
-          test -f lib/main.dart
-          test -f android/app/build.gradle.kts
-
-      - name: Tai thu vien
-        script: flutter pub get
-
-      - name: Kiem tra ma nguon
-        script: flutter analyze --no-fatal-warnings --no-fatal-infos
-
-      - name: Build APK Release
-        script: flutter build apk --release
-
+      - name: Get packages
+        script: cd flutter_app && flutter pub get
+      - name: Build APK
+        script: cd flutter_app && flutter build apk --release --dart-define=API_URL=$API_URL
     artifacts:
-      - build/app/outputs/flutter-apk/app-release.apk
-      - build/app/outputs/flutter-apk/*.apk
+      - flutter_app/build/app/outputs/flutter-apk/app-release.apk
 
-    publishing:
-      email:
-        recipients:
-          - sangntupes@gmail.com
-        notify:
-          success: true
-          failure: true
+  web-release:
+    name: Flutter Web
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      vars:
+        API_URL: "https://YOUR-SERVER.onrender.com"
+    scripts:
+      - name: Get packages
+        script: cd flutter_app && flutter pub get
+      - name: Build web
+        script: cd flutter_app && flutter build web --release --dart-define=API_URL=$API_URL
+    artifacts:
+      - flutter_app/build/web/**

@@ -1,30 +1,37 @@
-# KIỂM ĐẾM PHIẾU BẦU MOBILE PRO
+# KIỂM ĐẾM PHIẾU BẦU PRO V1.0
 
-Dự án Flutter Android dùng để thiết lập cuộc bầu cử, nhập phiếu, quản lý phiếu đã sửa, thống kê xếp hạng, xuất PDF và chia sẻ dữ liệu.
+Bộ phần mềm gồm ứng dụng Flutter (Android/Web) và máy chủ Node.js realtime.
 
-## Cấu trúc
+## Chức năng đã có
+- Tạo cuộc bầu cử, sinh mã 6 ký tự và khóa chủ sở hữu.
+- Nhiều người mở cùng mã để nhập phiếu.
+- Thêm/xóa người được bầu trước khi nhập phiếu.
+- Giới hạn số lựa chọn trên mỗi phiếu.
+- Thống kê và xếp hạng trực tiếp.
+- Khóa/mở nhập phiếu.
+- Đồng bộ realtime bằng Socket.IO.
+- Xuất/chia sẻ báo cáo PDF tiếng Việt.
+- Mã QR hiển thị mã tham gia.
+- Build APK và Web bằng Codemagic.
 
-- `android/`: dự án Android dùng để build APK.
-- `lib/database/`: SQLite và lưu dữ liệu.
-- `lib/pages/`: giao diện chính và nhập phiếu.
-- `lib/models/`: mô hình dữ liệu.
-- `lib/services/`: quy tắc kiểm tra phiếu.
-- `lib/widgets/`: widget dùng chung.
-- `lib/utils/`: thông tin ứng dụng.
-- `codemagic.yaml`: build APK online bằng Codemagic.
-- `.github/workflows/build-apk.yml`: build dự phòng bằng GitHub Actions.
+## Chạy máy chủ trên Windows
+1. Cài Node.js 20.
+2. Mở thư mục `server`.
+3. Chạy `npm install`.
+4. Chạy `npm start`.
+5. Máy chủ mặc định: `http://localhost:3000`.
 
-## Build trên Codemagic
+## Chạy Flutter
+1. Cài Flutter.
+2. Mở thư mục `flutter_app`.
+3. Chạy `flutter pub get`.
+4. Android emulator dùng máy chủ trên máy tính: `flutter run --dart-define=API_URL=http://10.0.2.2:3000`.
+5. Web cục bộ: `flutter run -d chrome --dart-define=API_URL=http://localhost:3000`.
 
-1. Upload toàn bộ nội dung dự án lên repository GitHub.
-2. Trong Codemagic, chọn repository và loại dự án Flutter.
-3. Chọn nhánh `main`.
-4. Bấm **Check for configuration files**.
-5. Chọn workflow **KIEM DEM PHIEU BAU - APK RELEASE**.
-6. Bấm **Start new build**.
-7. Tải `app-release.apk` trong mục Artifacts.
+## Đưa online
+- Triển khai thư mục `server` lên Render hoặc VPS.
+- Sửa biến `API_URL` trong Codemagic thành địa chỉ máy chủ thật.
+- Đẩy toàn bộ dự án lên GitHub và kết nối Codemagic.
 
-
-## Cấu hình máy build
-
-Dự án dùng `instance_type: linux` để tương thích với tài khoản Codemagic miễn phí.
+## Lưu ý dữ liệu
+Bản V1.0 dùng tệp JSON ở `server/data/db.json`, phù hợp triển khai nhỏ và dễ sao lưu. Khi dùng đông người lâu dài nên nâng cấp PostgreSQL.

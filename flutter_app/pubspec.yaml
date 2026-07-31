@@ -1,0 +1,27 @@
+name: kiem_dem_phieu_bau_pro
+description: Kiem dem phieu bau realtime cho Android va Web.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  http: ^1.2.2
+  socket_io_client: ^3.0.2
+  shared_preferences: ^2.3.2
+  qr_flutter: ^4.1.0
+  pdf: ^3.11.1
+  printing: ^5.13.4
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
