@@ -37,3 +37,11 @@ HƯỚNG DẪN LÀM LẠI TỪ ĐẦU
 - Mở lần build thành công.
 - Kéo xuống Artifacts.
 - Tải app-release.apk.
+
+
+LƯU Ý GÓI MIỄN PHÍ
+==================
+File codemagic.yaml đã được chỉnh sang:
+  instance_type: linux
+
+Không dùng linux_x2 vì loại máy này có thể yêu cầu gói thanh toán.

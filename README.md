@@ -23,3 +23,8 @@ Dự án Flutter Android dùng để thiết lập cuộc bầu cử, nhập phi
 5. Chọn workflow **KIEM DEM PHIEU BAU - APK RELEASE**.
 6. Bấm **Start new build**.
 7. Tải `app-release.apk` trong mục Artifacts.
+
+
+## Cấu hình máy build
+
+Dự án dùng `instance_type: linux` để tương thích với tài khoản Codemagic miễn phí.
